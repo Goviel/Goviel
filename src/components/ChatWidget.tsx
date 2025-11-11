@@ -10,6 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ChatWidgetProps {
   open: boolean;
@@ -21,6 +22,11 @@ interface Message {
   role: "user" | "assistant";
   content: string;
   timestamp: Date;
+  files?: Array<{
+    name: string;
+    url: string;
+    type: string;
+  }>;
 }
 
 const ChatWidget = ({ open, onOpenChange }: ChatWidgetProps) => {
@@ -29,8 +35,10 @@ const ChatWidget = ({ open, onOpenChange }: ChatWidgetProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isRecording, setIsRecording] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     // Check localStorage for chat_session_id
@@ -62,8 +70,66 @@ const ChatWidget = ({ open, onOpenChange }: ChatWidgetProps) => {
   };
 
   const handleFileAttach = () => {
-    // TODO: Implement file attachment logic
-    console.log("Attach file clicked");
+    fileInputRef.current?.click();
+  };
+
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    setIsUploading(true);
+
+    try {
+      const uploadedFiles = [];
+
+      for (const file of Array.from(files)) {
+        const fileExt = file.name.split(".").pop();
+        const fileName = `${sessionId}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+
+        const { data, error } = await supabase.storage
+          .from("chat_uploads")
+          .upload(fileName, file);
+
+        if (error) throw error;
+
+        const { data: urlData } = supabase.storage
+          .from("chat_uploads")
+          .getPublicUrl(data.path);
+
+        uploadedFiles.push({
+          name: file.name,
+          url: urlData.publicUrl,
+          type: file.type,
+        });
+      }
+
+      const newMessage: Message = {
+        id: crypto.randomUUID(),
+        role: "user",
+        content: `${uploadedFiles.length} archivo(s) adjunto(s)`,
+        timestamp: new Date(),
+        files: uploadedFiles,
+      };
+
+      setMessages((prev) => [...prev, newMessage]);
+
+      toast({
+        title: "Archivos enviados",
+        description: `${uploadedFiles.length} archivo(s) subido(s) correctamente`,
+      });
+    } catch (error) {
+      console.error("Error uploading files:", error);
+      toast({
+        title: "Error",
+        description: "No se pudieron subir los archivos",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -197,6 +263,26 @@ const ChatWidget = ({ open, onOpenChange }: ChatWidgetProps) => {
                     }`}
                   >
                     <p className="text-base leading-relaxed">{message.content}</p>
+                    {message.files && message.files.length > 0 && (
+                      <div className="mt-3 space-y-2">
+                        {message.files.map((file, idx) => (
+                          <a
+                            key={idx}
+                            href={file.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex items-center gap-2 text-sm p-2 rounded-lg transition-colors ${
+                              message.role === "user"
+                                ? "bg-primary-foreground/10 hover:bg-primary-foreground/20"
+                                : "bg-background/50 hover:bg-background/70"
+                            }`}
+                          >
+                            <Paperclip className="h-4 w-4" />
+                            <span className="truncate">{file.name}</span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
                     <p className={`text-xs mt-2 ${
                       message.role === "user" 
                         ? "text-primary-foreground/70" 
@@ -246,11 +332,20 @@ const ChatWidget = ({ open, onOpenChange }: ChatWidgetProps) => {
               </Button>
             </div>
             <div className="flex flex-col gap-3">
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                onChange={handleFileSelect}
+                className="hidden"
+                accept="image/*,.pdf,.doc,.docx,.txt"
+              />
               <Button
                 size="icon"
                 onClick={handleFileAttach}
                 variant="outline"
                 className="h-[70px] w-14 rounded-xl hover:border-secondary hover:text-secondary transition-all"
+                disabled={isUploading || isRecording}
               >
                 <Paperclip className="h-6 w-6" />
               </Button>
