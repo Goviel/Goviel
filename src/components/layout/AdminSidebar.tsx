@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, MessageSquare, BarChart3, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, MessageSquare, Database, Palette, LogOut } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -17,12 +17,17 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 const menuItems = [
   { title: "Dashboard", url: "/panel-control/dashboard", icon: LayoutDashboard },
   { title: "Contactos", url: "/panel-control/contactos", icon: Users },
   { title: "Chats", url: "/panel-control/chats", icon: MessageSquare },
-  { title: "Métricas", url: "/panel-control/metricas", icon: BarChart3 },
+  { title: "Uso de Storage", url: "/panel-control/uso", icon: Database },
+];
+
+const utilityItems = [
+  { title: "Guía de Estilo", url: "/style-guide", icon: Palette },
 ];
 
 export function AdminSidebar() {
@@ -70,10 +75,35 @@ export function AdminSidebar() {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navegación</SidebarGroupLabel>
+          <SidebarGroupLabel>Principal</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild isActive={isActive(item.url)}>
+                    <NavLink
+                      to={item.url}
+                      end
+                      className="flex items-center gap-3 hover:bg-muted/50 transition-colors"
+                      activeClassName="bg-muted text-primary font-medium"
+                    >
+                      <item.icon className="h-5 w-5" />
+                      {open && <span>{item.title}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <Separator className="my-2" />
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Herramientas</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {utilityItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild isActive={isActive(item.url)}>
                     <NavLink
