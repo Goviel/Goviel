@@ -5,25 +5,21 @@ import ServiceCard from "@/components/ServiceCard";
 import ContactForm from "@/components/ContactForm";
 import { HardHat, Settings, Truck, Cpu, Stethoscope, Sparkles, Mail, Phone, Clock, MapPin } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-
 const LandingPage = () => {
   // Track page visit
   useEffect(() => {
     const trackPageVisit = async () => {
       try {
-        await supabase
-          .from("metrics")
-          .insert([{ event_type: "page_visit" }]);
+        await supabase.from("metrics").insert([{
+          event_type: "page_visit"
+        }]);
       } catch (error) {
         console.error("Error tracking page visit:", error);
       }
     };
-
     trackPageVisit();
   }, []);
-
-  return (
-    <MainLayout>
+  return <MainLayout>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-primary/80 py-20 md:py-32">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -34,11 +30,9 @@ const LandingPage = () => {
             <p className="mb-8 text-lg leading-relaxed text-white/90 max-w-3xl mx-auto">
               Somos una empresa comercializadora de productos y servicios para áreas: Medicas, laboratorios, industrial, logística, construcción y más.
             </p>
-            <Button 
-              size="lg" 
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
-              onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
-            >
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" onClick={() => document.getElementById('contacto')?.scrollIntoView({
+            behavior: 'smooth'
+          })}>
               Contáctanos Ahora
             </Button>
           </div>
@@ -106,36 +100,12 @@ const LandingPage = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ServiceCard
-              titulo="Industrial"
-              descripcion="Zapato industrial, protección personal, uniformes, refacciones, químicos, herramientas..."
-              Icon={HardHat}
-            />
-            <ServiceCard
-              titulo="Servicios (Mantenimiento)"
-              descripcion="Reparación sistemas hídricos, herrería, plomería, pintura, Tablaroca, climas..."
-              Icon={Settings}
-            />
-            <ServiceCard
-              titulo="Logística"
-              descripcion="Fletes a nivel nacional, tracto camión, 3.5 toneladas, estaquitas, renta de montacargas."
-              Icon={Truck}
-            />
-            <ServiceCard
-              titulo="Ingeniería"
-              descripcion="Desarrollo de productos, Lean Manufacturing, software de monitoreo, capacitaciones..."
-              Icon={Cpu}
-            />
-            <ServiceCard
-              titulo="Médico y Laboratorio"
-              descripcion="Ropa médica, insumos, mobiliario, dental, nutrición, pruebas diagnóstico..."
-              Icon={Stethoscope}
-            />
-            <ServiceCard
-              titulo="Limpieza"
-              descripcion="Insumos de limpieza, higiénicos, marcas Ablon y Oval."
-              Icon={Sparkles}
-            />
+            <ServiceCard titulo="Industrial" descripcion="Zapato industrial, protección personal, uniformes, refacciones, químicos, herramientas..." Icon={HardHat} />
+            <ServiceCard titulo="Servicios (Mantenimiento)" descripcion="Reparación sistemas hídricos, herrería, plomería, pintura, Tablaroca, climas..." Icon={Settings} />
+            <ServiceCard titulo="Logística" descripcion="Fletes a nivel nacional, tracto camión, 3.5 toneladas, estaquitas, renta de montacargas." Icon={Truck} />
+            <ServiceCard titulo="Ingeniería" descripcion="Desarrollo de productos, Lean Manufacturing, software de monitoreo, capacitaciones..." Icon={Cpu} />
+            <ServiceCard titulo="Médico y Laboratorio" descripcion="Ropa médica, insumos, mobiliario, dental, nutrición, pruebas diagnóstico..." Icon={Stethoscope} />
+            <ServiceCard titulo="Limpieza" descripcion="Insumos de limpieza, higiénicos, marcas Ablon y Oval." Icon={Sparkles} />
           </div>
         </div>
       </section>
@@ -151,18 +121,9 @@ const LandingPage = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <div 
-                key={item}
-                className="flex items-center justify-center bg-background rounded-lg p-6 border-2 hover:border-accent transition-all"
-              >
-                <img 
-                  src="/placeholder.svg" 
-                  alt={`Cliente ${item}`}
-                  className="w-full h-20 object-contain opacity-60 hover:opacity-100 transition-opacity"
-                />
-              </div>
-            ))}
+            {[1, 2, 3, 4, 5, 6, 7, 8].map(item => <div key={item} className="flex items-center justify-center bg-background rounded-lg p-6 border-2 hover:border-accent transition-all">
+                <img src="/placeholder.svg" alt={`Cliente ${item}`} className="w-full h-20 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+              </div>)}
           </div>
         </div>
       </section>
@@ -196,7 +157,7 @@ const LandingPage = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-1">Teléfono</h3>
-                  <p className="text-base text-muted-foreground">+52 844 123 4567</p>
+                  <p className="text-base text-muted-foreground">+52 844 727 7669</p>
                 </div>
               </div>
 
@@ -206,8 +167,9 @@ const LandingPage = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-1">Horario</h3>
-                  <p className="text-base text-muted-foreground">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                  <p className="text-base text-muted-foreground">Sábado: 9:00 AM - 2:00 PM</p>
+                  <p className="text-base text-muted-foreground">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                  <p className="text-base text-muted-foreground">
+                </p>
                 </div>
               </div>
 
@@ -229,8 +191,6 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-    </MainLayout>
-  );
+    </MainLayout>;
 };
-
 export default LandingPage;

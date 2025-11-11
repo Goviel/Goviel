@@ -44,11 +44,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-accent" />
-                <span>telefono_cliente</span>
+                <span>844 727 7669</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-accent" />
-                <span>horario_cliente</span>
+                <span>Lunes a Viernes: 9:00 AM - 6:00 PM</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-accent" />
