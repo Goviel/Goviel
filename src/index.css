@@ -8,38 +8,38 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Industrial color palette - Professional blues and grays with orange accent */
-    --background: 0 0% 100%;
-    --foreground: 215 25% 15%;
+    /* Professional Industrial color palette - Dark navy with crimson accents */
+    --background: 0 0% 98%;
+    --foreground: 220 15% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 220 15% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 220 15% 20%;
 
-    /* Primary: Professional corporate blue */
-    --primary: 213 94% 42%;
+    /* Primary: Deep navy blue - professional industrial */
+    --primary: 218 54% 20%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Steel gray for industrial feel */
-    --secondary: 215 20% 65%;
-    --secondary-foreground: 215 25% 15%;
+    /* Secondary: Medium gray for subtle elements */
+    --secondary: 220 10% 50%;
+    --secondary-foreground: 0 0% 100%;
 
     /* Muted: Light gray backgrounds */
-    --muted: 210 25% 95%;
-    --muted-foreground: 215 15% 45%;
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 10% 45%;
 
-    /* Accent: Industrial orange for CTAs and highlights */
-    --accent: 25 95% 53%;
+    /* Accent: Crimson red for CTAs and highlights */
+    --accent: 351 77% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 20% 88%;
-    --input: 215 20% 88%;
-    --ring: 213 94% 42%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 351 77% 45%;
 
     --radius: 0.5rem;
 
@@ -61,38 +61,38 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Dark mode: Deep industrial blues and grays */
-    --background: 215 30% 12%;
-    --foreground: 210 25% 95%;
+    /* Dark mode: Industrial dark navy with crimson accents */
+    --background: 220 30% 8%;
+    --foreground: 0 0% 95%;
 
-    --card: 215 28% 16%;
-    --card-foreground: 210 25% 95%;
+    --card: 220 25% 12%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 215 28% 16%;
-    --popover-foreground: 210 25% 95%;
+    --popover: 220 25% 12%;
+    --popover-foreground: 0 0% 95%;
 
-    /* Primary: Bright blue for dark mode */
-    --primary: 213 94% 58%;
+    /* Primary: Lighter navy for dark mode */
+    --primary: 218 54% 30%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary: Medium gray */
-    --secondary: 215 20% 35%;
-    --secondary-foreground: 210 25% 95%;
+    --secondary: 220 10% 40%;
+    --secondary-foreground: 0 0% 100%;
 
     /* Muted: Dark gray backgrounds */
-    --muted: 215 25% 20%;
-    --muted-foreground: 215 15% 65%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 10% 65%;
 
-    /* Accent: Bright orange */
-    --accent: 25 95% 58%;
+    /* Accent: Bright crimson red */
+    --accent: 351 77% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 25% 25%;
-    --input: 215 25% 25%;
-    --ring: 213 94% 58%;
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 351 77% 55%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
