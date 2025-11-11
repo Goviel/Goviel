@@ -8,9 +8,7 @@ const Footer = () => {
           <div>
             <div className="mb-4 flex items-center gap-2">
               <Building2 className="h-8 w-8 text-accent" />
-              <span className="text-xl font-bold text-primary-foreground">
-                Nombre de la Empresa
-              </span>
+              <span className="text-xl font-bold text-primary-foreground">Goviel</span>
             </div>
             <p className="text-sm text-primary-foreground/70">
               Soluciones industriales profesionales
