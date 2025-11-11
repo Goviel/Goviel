@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MessageSquare, Bot, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -6,16 +7,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import ChatWidget from "./ChatWidget";
 
 const FAB = () => {
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const handleWhatsAppClick = () => {
     // Placeholder: Will be implemented with actual WhatsApp link
     window.open("https://wa.me/528441234567", "_blank");
   };
 
   const handleChatbotClick = () => {
-    // Placeholder: Will be implemented with chatbot functionality
-    console.log("Open chatbot");
+    setIsChatOpen(true);
   };
 
   return (
@@ -49,6 +51,7 @@ const FAB = () => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      <ChatWidget open={isChatOpen} onOpenChange={setIsChatOpen} />
     </div>
   );
 };
