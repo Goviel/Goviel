@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import AdminLayout from "./components/layout/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Contacts from "./pages/admin/Contacts";
+import Chats from "./pages/admin/Chats";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,16 @@ const App = () => (
               <ProtectedRoute>
                 <AdminLayout>
                   <Contacts />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/panel-control/chats"
+            element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <Chats />
                 </AdminLayout>
               </ProtectedRoute>
             }
