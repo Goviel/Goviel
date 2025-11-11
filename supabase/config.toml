@@ -1,1 +1,4 @@
 project_id = "qggykabklxvnibfjjldf"
+
+[functions.clear-chat-bucket]
+verify_jwt = true

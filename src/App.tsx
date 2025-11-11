@@ -12,6 +12,7 @@ import AdminLayout from "./components/layout/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Contacts from "./pages/admin/Contacts";
 import Chats from "./pages/admin/Chats";
+import StorageUsage from "./pages/admin/StorageUsage";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,16 @@ const App = () => (
               <ProtectedRoute>
                 <AdminLayout>
                   <Chats />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/panel-control/uso"
+            element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <StorageUsage />
                 </AdminLayout>
               </ProtectedRoute>
             }
