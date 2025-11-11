@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import AdminLayout from "./components/layout/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
+import Contacts from "./pages/admin/Contacts";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,16 @@ const App = () => (
               <ProtectedRoute>
                 <AdminLayout>
                   <Dashboard />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/panel-control/contactos"
+            element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <Contacts />
                 </AdminLayout>
               </ProtectedRoute>
             }
