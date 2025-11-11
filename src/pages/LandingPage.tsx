@@ -34,15 +34,69 @@ const LandingPage = () => {
             <p className="mb-8 text-lg leading-relaxed text-white/90 max-w-3xl mx-auto">
               Somos una empresa comercializadora de productos y servicios para áreas: Medicas, laboratorios, industrial, logística, construcción y más.
             </p>
-            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+            <Button 
+              size="lg" 
+              className="bg-accent text-accent-foreground hover:bg-accent/90"
+              onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Contáctanos Ahora
             </Button>
           </div>
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="nosotros" className="py-16 bg-muted">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-foreground mb-4">Nosotros</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+              Somos una empresa comprometida con la excelencia en soluciones industriales y logísticas
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="text-center">
+              <div className="mb-4 flex items-center justify-center">
+                <div className="rounded-full bg-primary/10 p-4">
+                  <HardHat className="h-8 w-8 text-primary" />
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Experiencia</h3>
+              <p className="text-base text-muted-foreground">
+                Años de trayectoria brindando soluciones integrales a diversas industrias
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="mb-4 flex items-center justify-center">
+                <div className="rounded-full bg-primary/10 p-4">
+                  <Settings className="h-8 w-8 text-primary" />
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Calidad</h3>
+              <p className="text-base text-muted-foreground">
+                Productos y servicios de la más alta calidad garantizada
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="mb-4 flex items-center justify-center">
+                <div className="rounded-full bg-primary/10 p-4">
+                  <Truck className="h-8 w-8 text-primary" />
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Compromiso</h3>
+              <p className="text-base text-muted-foreground">
+                Dedicados a satisfacer las necesidades de nuestros clientes
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
-      <section className="py-16 bg-background">
+      <section id="servicios" className="py-16 bg-background">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-foreground mb-4">Nuestros Servicios</h2>
@@ -87,7 +141,7 @@ const LandingPage = () => {
       </section>
 
       {/* Clients Section */}
-      <section className="py-16 bg-muted">
+      <section id="clientes" className="py-16 bg-muted">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-foreground mb-4">Nuestros Clientes</h2>
@@ -114,7 +168,7 @@ const LandingPage = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-background">
+      <section id="contacto" className="py-16 bg-background">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-foreground mb-4">Contáctanos</h2>

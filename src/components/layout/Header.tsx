@@ -1,7 +1,7 @@
-import { NavLink } from "@/components/NavLink";
 import { Building2 } from "lucide-react";
+
 const Header = () => {
-  return <header className="border-b border-border bg-primary">
+  return <header className="sticky top-0 z-50 border-b border-border bg-primary">
       <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center justify-between">
           {/* Logo */}
@@ -12,18 +12,18 @@ const Header = () => {
 
           {/* Navigation Links */}
           <div className="hidden items-center gap-6 md:flex">
-            <NavLink to="/servicios" className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-accent" activeClassName="text-accent">
+            <a href="#servicios" className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-accent">
               Servicios
-            </NavLink>
-            <NavLink to="/nosotros" className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-accent" activeClassName="text-accent">
+            </a>
+            <a href="#nosotros" className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-accent">
               Nosotros
-            </NavLink>
-            <NavLink to="/clientes" className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-accent" activeClassName="text-accent">
+            </a>
+            <a href="#clientes" className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-accent">
               Clientes
-            </NavLink>
-            <NavLink to="/contacto" className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-accent" activeClassName="text-accent">
+            </a>
+            <a href="#contacto" className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-accent">
               Contacto
-            </NavLink>
+            </a>
           </div>
         </nav>
       </div>
