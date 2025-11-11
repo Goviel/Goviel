@@ -1,5 +1,4 @@
 import { Building2 } from "lucide-react";
-
 const Header = () => {
   return <header className="sticky top-0 z-50 border-b border-border bg-primary">
       <div className="container mx-auto px-4 py-4">
@@ -7,7 +6,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Building2 className="h-8 w-8 text-accent" />
-            <span className="text-xl font-bold text-primary-foreground">​Goviel</span>
+            <span className="font-bold text-primary-foreground text-4xl">​Goviel</span>
           </div>
 
           {/* Navigation Links */}
