@@ -1,10 +1,27 @@
+import { useEffect } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
 import ContactForm from "@/components/ContactForm";
 import { HardHat, Settings, Truck, Cpu, Stethoscope, Sparkles, Mail, Phone, Clock, MapPin } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const LandingPage = () => {
+  // Track page visit
+  useEffect(() => {
+    const trackPageVisit = async () => {
+      try {
+        await supabase
+          .from("metrics")
+          .insert([{ event_type: "page_visit" }]);
+      } catch (error) {
+        console.error("Error tracking page visit:", error);
+      }
+    };
+
+    trackPageVisit();
+  }, []);
+
   return (
     <MainLayout>
       {/* Hero Section */}

@@ -1,7 +1,74 @@
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, MessageSquare, BarChart3, TrendingUp } from "lucide-react";
+import { Users, MessageSquare, MousePointerClick, FileText, BarChart3 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+
+interface MetricsCounts {
+  page_visits: number;
+  whatsapp_clicks: number;
+  form_submits: number;
+  chat_opens: number;
+}
 
 const Dashboard = () => {
+  const [metrics, setMetrics] = useState<MetricsCounts>({
+    page_visits: 0,
+    whatsapp_clicks: 0,
+    form_submits: 0,
+    chat_opens: 0,
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMetrics = async () => {
+      try {
+        // Fetch all metrics counts
+        const { data: pageVisits } = await supabase
+          .from("metrics")
+          .select("*", { count: "exact", head: true })
+          .eq("event_type", "page_visit");
+
+        const { data: whatsappClicks } = await supabase
+          .from("metrics")
+          .select("*", { count: "exact", head: true })
+          .eq("event_type", "whatsapp_click");
+
+        const { data: formSubmits } = await supabase
+          .from("metrics")
+          .select("*", { count: "exact", head: true })
+          .eq("event_type", "form_submit");
+
+        const { data: chatOpens } = await supabase
+          .from("metrics")
+          .select("*", { count: "exact", head: true })
+          .eq("event_type", "chat_open");
+
+        setMetrics({
+          page_visits: pageVisits?.length || 0,
+          whatsapp_clicks: whatsappClicks?.length || 0,
+          form_submits: formSubmits?.length || 0,
+          chat_opens: chatOpens?.length || 0,
+        });
+      } catch (error) {
+        console.error("Error fetching metrics:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMetrics();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Cargando métricas...</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="space-y-6">
       <div>
@@ -15,14 +82,14 @@ const Dashboard = () => {
         <Card className="border-2 hover:border-primary transition-all">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Total Contactos
+              Visitas a la Página
             </CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-primary">0</div>
+            <div className="text-2xl font-bold text-primary">{metrics.page_visits}</div>
             <p className="text-xs text-muted-foreground">
-              Formularios recibidos
+              Visitas registradas
             </p>
           </CardContent>
         </Card>
@@ -30,14 +97,14 @@ const Dashboard = () => {
         <Card className="border-2 hover:border-accent transition-all">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Chats Activos
+              Clicks en WhatsApp
             </CardTitle>
-            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+            <MousePointerClick className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-accent">0</div>
+            <div className="text-2xl font-bold text-accent">{metrics.whatsapp_clicks}</div>
             <p className="text-xs text-muted-foreground">
-              Conversaciones nuevas
+              Interacciones con WhatsApp
             </p>
           </CardContent>
         </Card>
@@ -45,14 +112,14 @@ const Dashboard = () => {
         <Card className="border-2 hover:border-secondary transition-all">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Eventos Totales
+              Formularios Enviados
             </CardTitle>
-            <BarChart3 className="h-4 w-4 text-muted-foreground" />
+            <FileText className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-secondary">0</div>
+            <div className="text-2xl font-bold text-secondary">{metrics.form_submits}</div>
             <p className="text-xs text-muted-foreground">
-              Métricas registradas
+              Contactos recibidos
             </p>
           </CardContent>
         </Card>
@@ -60,14 +127,14 @@ const Dashboard = () => {
         <Card className="border-2 hover:border-primary transition-all">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Tasa de Conversión
+              Chats Iniciados
             </CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <MessageSquare className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-primary">0%</div>
+            <div className="text-2xl font-bold text-primary">{metrics.chat_opens}</div>
             <p className="text-xs text-muted-foreground">
-              Del total de visitas
+              Conversaciones abiertas
             </p>
           </CardContent>
         </Card>

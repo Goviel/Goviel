@@ -58,6 +58,11 @@ const ContactForm = () => {
 
       if (error) throw error;
 
+      // Track form submission
+      await supabase
+        .from("metrics")
+        .insert([{ event_type: "form_submit" }]);
+
       toast.success("¡Mensaje enviado!", {
         description: "Nos pondremos en contacto contigo pronto.",
       });

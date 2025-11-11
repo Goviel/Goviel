@@ -8,15 +8,33 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import ChatWidget from "./ChatWidget";
+import { supabase } from "@/integrations/supabase/client";
 
 const FAB = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const handleWhatsAppClick = () => {
-    // Placeholder: Will be implemented with actual WhatsApp link
+  const handleWhatsAppClick = async () => {
+    // Track WhatsApp click
+    try {
+      await supabase
+        .from("metrics")
+        .insert([{ event_type: "whatsapp_click" }]);
+    } catch (error) {
+      console.error("Error tracking WhatsApp click:", error);
+    }
+    
     window.open("https://wa.me/528441234567", "_blank");
   };
 
-  const handleChatbotClick = () => {
+  const handleChatbotClick = async () => {
+    // Track chat open
+    try {
+      await supabase
+        .from("metrics")
+        .insert([{ event_type: "chat_open" }]);
+    } catch (error) {
+      console.error("Error tracking chat open:", error);
+    }
+    
     setIsChatOpen(true);
   };
 
