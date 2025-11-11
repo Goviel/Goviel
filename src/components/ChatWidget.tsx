@@ -143,7 +143,7 @@ const ChatWidget = ({ open, onOpenChange }: ChatWidgetProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[700px] h-[750px] flex flex-col p-0 gap-0 bg-gradient-to-b from-background to-muted/20">
+      <DialogContent className="sm:max-w-[700px] max-h-[85vh] h-[600px] flex flex-col p-0 gap-0 bg-gradient-to-b from-background to-muted/20">
         <DialogHeader className="px-8 py-6 border-b border-border/50 bg-gradient-to-r from-primary/5 to-accent/5">
           <div className="flex items-center justify-between">
             <div>
