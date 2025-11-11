@@ -1,4 +1,3 @@
-import { NavLink } from "@/components/NavLink";
 import { Building2, Mail, Phone, Clock, MapPin } from "lucide-react";
 const Footer = () => {
   return <footer className="border-t border-border bg-primary">
@@ -21,15 +20,15 @@ const Footer = () => {
               Enlaces
             </h3>
             <nav className="flex flex-col gap-2">
-              <NavLink to="/servicios" className="text-sm text-primary-foreground/80 transition-colors hover:text-accent">
+              <a href="#servicios" className="text-sm text-primary-foreground/80 transition-colors hover:text-accent">
                 Servicios
-              </NavLink>
-              <NavLink to="/nosotros" className="text-sm text-primary-foreground/80 transition-colors hover:text-accent">
+              </a>
+              <a href="#nosotros" className="text-sm text-primary-foreground/80 transition-colors hover:text-accent">
                 Nosotros
-              </NavLink>
-              <NavLink to="/contacto" className="text-sm text-primary-foreground/80 transition-colors hover:text-accent">
+              </a>
+              <a href="#contacto" className="text-sm text-primary-foreground/80 transition-colors hover:text-accent">
                 Contacto
-              </NavLink>
+              </a>
             </nav>
           </div>
 
