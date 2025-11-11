@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import FAB from "../FAB";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -12,6 +13,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
+      <FAB />
     </div>
   );
 };
