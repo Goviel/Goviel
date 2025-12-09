@@ -4,15 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import AdminLogin from "./pages/AdminLogin";
-import StyleGuide from "./pages/StyleGuide";
+import ServiceDetail from "./pages/ServiceDetail";
 import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-import AdminLayout from "./components/layout/AdminLayout";
-import Dashboard from "./pages/admin/Dashboard";
-import Contacts from "./pages/admin/Contacts";
-import Chats from "./pages/admin/Chats";
-import StorageUsage from "./pages/admin/StorageUsage";
+
 
 const queryClient = new QueryClient();
 
@@ -24,48 +18,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/panel-control" element={<AdminLogin />} />
-          <Route
-            path="/panel-control/dashboard"
-            element={
-              <ProtectedRoute>
-                <AdminLayout>
-                  <Dashboard />
-                </AdminLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/panel-control/contactos"
-            element={
-              <ProtectedRoute>
-                <AdminLayout>
-                  <Contacts />
-                </AdminLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/panel-control/chats"
-            element={
-              <ProtectedRoute>
-                <AdminLayout>
-                  <Chats />
-                </AdminLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/panel-control/uso"
-            element={
-              <ProtectedRoute>
-                <AdminLayout>
-                  <StorageUsage />
-                </AdminLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/style-guide" element={<StyleGuide />} />
+          <Route path="/servicios/:slug" element={<ServiceDetail />} />
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

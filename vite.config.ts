@@ -8,6 +8,14 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      // Cuando tu código diga '/chatwoot-api', Vite lo redirigirá a tu servidor real
+      '/chatwoot-api': {
+        target: 'https://goviel-chatwoot.9xcf8y.easypanel.host',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/chatwoot-api/, '')
+      }
+    }
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

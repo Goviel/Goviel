@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+// import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
   nombre: z.string()
@@ -47,6 +47,7 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
+      /* 
       const { error } = await supabase
         .from("contacts")
         .insert([{
@@ -62,6 +63,10 @@ const ContactForm = () => {
       await supabase
         .from("metrics")
         .insert([{ event_type: "form_submit" }]);
+      */
+
+      // Mock success for now
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       toast.success("¡Mensaje enviado!", {
         description: "Nos pondremos en contacto contigo pronto.",
@@ -90,9 +95,9 @@ const ContactForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="nombre">Nombre Completo</Label>
-            <Input 
-              id="nombre" 
-              placeholder="Industrias Metalúrgicas S.A." 
+            <Input
+              id="nombre"
+              placeholder="Industrias Metalúrgicas S.A."
               {...register("nombre")}
               disabled={isSubmitting}
             />
@@ -100,13 +105,13 @@ const ContactForm = () => {
               <p className="text-sm text-destructive">{errors.nombre.message}</p>
             )}
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input 
-              id="email" 
-              type="email" 
-              placeholder="contacto@empresa.com" 
+            <Input
+              id="email"
+              type="email"
+              placeholder="contacto@empresa.com"
               {...register("email")}
               disabled={isSubmitting}
             />
@@ -114,13 +119,13 @@ const ContactForm = () => {
               <p className="text-sm text-destructive">{errors.email.message}</p>
             )}
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="telefono">Teléfono</Label>
-            <Input 
-              id="telefono" 
-              type="tel" 
-              placeholder="+52 844 123 4567" 
+            <Input
+              id="telefono"
+              type="tel"
+              placeholder="+52 844 123 4567"
               {...register("telefono")}
               disabled={isSubmitting}
             />
@@ -128,11 +133,11 @@ const ContactForm = () => {
               <p className="text-sm text-destructive">{errors.telefono.message}</p>
             )}
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="comentario">Mensaje</Label>
-            <Textarea 
-              id="comentario" 
+            <Textarea
+              id="comentario"
               placeholder="Describe tu proyecto o solicitud de servicio..."
               rows={6}
               {...register("comentario")}
@@ -142,10 +147,10 @@ const ContactForm = () => {
               <p className="text-sm text-destructive">{errors.comentario.message}</p>
             )}
           </div>
-          
-          <Button 
-            type="submit" 
-            size="lg" 
+
+          <Button
+            type="submit"
+            size="lg"
             className="w-full bg-accent hover:bg-accent/90"
             disabled={isSubmitting}
           >
