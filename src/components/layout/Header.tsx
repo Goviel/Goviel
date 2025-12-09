@@ -4,9 +4,9 @@ const Header = () => {
     <div className="container mx-auto px-4 py-4">
       <nav className="flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <Building2 className="h-8 w-8 text-primary" />
-          <span className="font-bold text-slate-900 text-4xl">​Goviel</span>
+        <div className="flex items-center gap-0.5">
+          <img src="/favicon.png" alt="Goviel" className="h-10 w-auto object-contain" />
+          <span className="font-bold text-slate-900 text-4xl mt-1">oviel</span>
         </div>
 
         {/* Navigation Links */}

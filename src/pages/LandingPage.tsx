@@ -138,59 +138,28 @@ const LandingPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-4 h-auto md:h-[800px]">
 
-          {/* Industrial - 2x2 */}
-          <Link to="/servicios/industrial" className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl bg-card cursor-pointer hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl">
-            <img src={servicesData.industrial.image} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={servicesData.industrial.title} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end items-start text-left">
-              <h3 className="text-2xl font-bold text-white mb-1">{servicesData.industrial.title}</h3>
-              <p className="text-slate-200 text-sm line-clamp-2">{servicesData.industrial.shortDesc}</p>
-            </div>
-          </Link>
-
-          {/* Logística - 2x1 */}
-          <Link to="/servicios/logistica" className="md:col-span-2 relative group overflow-hidden rounded-2xl bg-card cursor-pointer hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl">
-            <img src={servicesData.logistica.image} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={servicesData.logistica.title} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end items-start text-left">
-              <h3 className="text-2xl font-bold text-white mb-1">{servicesData.logistica.title}</h3>
-              <p className="text-slate-200 text-sm line-clamp-2">{servicesData.logistica.shortDesc}</p>
-            </div>
-          </Link>
-
-          {/* Servicios (Mantenimiento) - 2x1 */}
-          <Link to="/servicios/servicios" className="md:col-span-2 relative group overflow-hidden rounded-2xl bg-card cursor-pointer hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl">
-            <img src={servicesData.servicios.image} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={servicesData.servicios.title} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end items-start text-left">
-              <h3 className="text-2xl font-bold text-white mb-1">{servicesData.servicios.title}</h3>
-              <p className="text-slate-200 text-sm line-clamp-2">{servicesData.servicios.shortDesc}</p>
-            </div>
-          </Link>
-
-          {/* Médico - 1x1 */}
-          <Link to="/servicios/medico" className="relative group overflow-hidden rounded-2xl bg-card cursor-pointer hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl">
-            <img src={servicesData.medico.image} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={servicesData.medico.title} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end items-start text-left">
-              <h3 className="text-xl font-bold text-white mb-1">{servicesData.medico.title}</h3>
-              <p className="text-slate-200 text-sm line-clamp-2">{servicesData.medico.shortDesc}</p>
-            </div>
-          </Link>
-
-          {/* Ingeniería - 1x1 */}
-          <Link to="/servicios/ingenieria" className="relative group overflow-hidden rounded-2xl bg-card cursor-pointer hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl">
-            <img src={servicesData.ingenieria.image} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={servicesData.ingenieria.title} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end items-start text-left">
-              <h3 className="text-xl font-bold text-white mb-1">{servicesData.ingenieria.title}</h3>
-              <p className="text-slate-200 text-sm line-clamp-2">{servicesData.ingenieria.shortDesc}</p>
-            </div>
-          </Link>
-
-          {/* Limpieza - 2x1 */}
-          <Link to="/servicios/limpieza" className="md:col-span-2 relative group overflow-hidden rounded-2xl bg-card cursor-pointer hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl">
-            <img src={servicesData.limpieza.image} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={servicesData.limpieza.title} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end items-start text-left">
-              <h3 className="text-2xl font-bold text-white mb-1">{servicesData.limpieza.title}</h3>
-              <p className="text-slate-200 text-sm line-clamp-2">{servicesData.limpieza.shortDesc}</p>
-            </div>
-          </Link>
+          {['industrial', 'logistica', 'servicios', 'medico', 'ingenieria', 'limpieza'].map((slug) => {
+            const service = servicesData[slug as keyof typeof servicesData];
+            return (
+              <Link
+                key={slug}
+                to={`/servicios/${slug}`}
+                className={`relative group overflow-hidden rounded-2xl bg-card cursor-pointer hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-xl h-64 md:h-auto ${slug === 'industrial' ? 'md:col-span-2 md:row-span-2' :
+                    slug === 'logistica' || slug === 'servicios' || slug === 'limpieza' ? 'md:col-span-2' : ''
+                  }`}
+              >
+                <img
+                  src={service.image}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt={service.title}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end items-start text-left">
+                  <h3 className="text-2xl font-bold text-white mb-1">{service.title}</h3>
+                  <p className="text-slate-200 text-sm line-clamp-2">{service.shortDesc}</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
