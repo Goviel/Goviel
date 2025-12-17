@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* FONDO: Un blanco humo muy técnico, no blanco papel */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    /* Slate 900 */
+
+    /* TARJETAS: Blanco puro para que resalten sobre el fondo humo */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    /* PRIMARIO: Azul Ingeniería (Vibrante) */
+    --primary: 221 83% 53%;
+    /* Blue 600 */
+    --primary-foreground: 210 40% 98%;
+
+    /* SECUNDARIO: Gris Metalizado */
+    --secondary: 215 16% 47%;
+    /* Slate 500 */
+    --secondary-foreground: 210 40% 98%;
+
+    /* ACENTO: Naranja Seguridad (Industrial Safety Orange) */
+    /* Usaremos esto para los botones de acción importantes */
+    --accent: 24 95% 53%;
+    /* Orange 500 */
+    --accent-foreground: 0 0% 100%;
+
+    /* BORDES Y LINEAS */
+    --border: 214 32% 91%;
+    /* Slate 200 */
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.75rem;
+    /* Bordes un poco más redondeados (moderno) */
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode: Industrial dark navy with crimson accents */
+    --background: 220 30% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 25% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 25% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary: Lighter navy for dark mode */
+    --primary: 218 54% 30%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Medium gray */
+    --secondary: 220 10% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted: Dark gray backgrounds */
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 10% 65%;
+
+    /* Accent: Bright crimson red */
+    --accent: 351 77% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 351 77% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    /* Patrón de fondo técnico (Papel milimétrico sutil) */
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* MEJORA EN LAS TARJETAS (Efecto Glass sutil) */
+  .bg-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  }
+
+  /* BOTONES MÁS MODERNOS */
+  button,
+  .button {
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  /* Efecto al hacer hover en botones primarios */
+  .bg-primary:hover {
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+    /* Sombra azul brillante */
+    transform: translateY(-1px);
+  }
+
+  /* TÍTULOS CON CARÁCTER */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+    /* Tracking negativo hace que se vea más 'Tech' */
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  .bg-dot-pattern {
+    background-image: radial-gradient(hsl(214.3 31.8% 91.4%) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
