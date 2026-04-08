@@ -33,8 +33,11 @@ const LandingPage = () => {
           <h1 className="mb-8 text-5xl md:text-7xl font-bold text-white tracking-tight drop-shadow-lg">
             Soluciones Industriales y Logísticas de Excelencia
           </h1>
-          <p className="mb-10 text-xl md:text-2xl font-medium leading-relaxed text-gray-100 max-w-4xl mx-auto drop-shadow-md">
-            Somos una empresa comercializadora de productos y servicios para áreas: Médicas, laboratorios, industrial, logística, construcción y más.
+          <p className="mb-2 text-xl md:text-2xl font-medium text-gray-100 max-w-4xl mx-auto drop-shadow-md">
+            Somos una empresa comercializadora de productos y servicios para áreas:
+          </p>
+          <p className="mb-10 text-xl md:text-2xl font-medium text-gray-100 max-w-4xl mx-auto drop-shadow-md">
+            Médicas, laboratorios, industrial, logística, construcción y más.
           </p>
           <Button
             size="lg"
